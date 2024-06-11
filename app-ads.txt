@@ -1,5 +1,6 @@
 #Google
 google.com, pub-6135443977814857, DIRECT, f08c47fec0942fa0
+google.com, pub-1091686516902576, DIRECT, f08c47fec0942fa0
 
 #Applovin
 applovin.com, 6a75c898f76dee934162566b376541a0, DIRECT
