@@ -671,7 +671,7 @@ sonobi.com, eaec54c63f, RESELLER, d1a215d9eb5aee9e
 meitu.com, 568, RESELLER
 
 #Vungle
-vungle.com,62d783558085ce00143aa3a0,DIRECT,c107d686becd2d77
+vungle.com,685a44d0892f9d0011d5ca8e,DIRECT,c107d686becd2d77
 152media.info,152M312,RESELLER
 Adform.com,2742,RESELLER
 Pubmatic.com,162882,RESELLER,5d62403b186f2ace
