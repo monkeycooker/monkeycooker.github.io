@@ -3,60 +3,1551 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreeCookersGame - Home</title>
+    <meta name="description" content="Three Cookers Game — feminine cyber music games. EDM hop, cute notes, cyber piano & racing rhythm on Google Play.">
+    <title>Three Cookers Game | Feminine Cyber Music</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;700;800&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <style>
-        /* Add your CSS styles here */
+        :root {
+            --void: #050508;
+            --void-2: #0c0814;
+            --panel: rgba(20, 10, 28, 0.78);
+            --magenta: #ff2d8a;
+            --rose: #ff6bb5;
+            --blush: #ffc0dc;
+            --violet: #b44dff;
+            --cyan: #00f0ff;
+            --ice: #b8fcff;
+            --text: #f8eef4;
+            --muted: #a894a4;
+            --line: rgba(255, 45, 138, 0.38);
+            --glow-m: 0 0 28px rgba(255, 45, 138, 0.5);
+            --glow-c: 0 0 28px rgba(0, 240, 255, 0.4);
+            --glow-v: 0 0 32px rgba(180, 77, 255, 0.35);
+            --clip-card: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));
+            --font-display: 'Oxanium', sans-serif;
+            --font-body: 'Sora', sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            font-family: var(--font-body);
+            background: var(--void);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.55;
         }
-        header {
-            background-color: #333;
-            color: #fff;
+
+        a { color: inherit; }
+
+        /* —— Atmosphere —— */
+        .cyber-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                radial-gradient(ellipse 85% 55% at 50% -8%, rgba(255, 45, 138, 0.28), transparent 55%),
+                radial-gradient(ellipse 45% 45% at 88% 18%, rgba(180, 77, 255, 0.14), transparent 50%),
+                radial-gradient(ellipse 50% 50% at 8% 65%, rgba(0, 240, 255, 0.1), transparent 50%),
+                radial-gradient(ellipse 35% 40% at 50% 90%, rgba(255, 107, 181, 0.08), transparent 55%),
+                linear-gradient(180deg, #0d0618 0%, var(--void) 42%, #070510 100%);
+        }
+
+        .cyber-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(255, 45, 138, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.035) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: radial-gradient(ellipse 75% 65% at 50% 28%, black, transparent 78%);
+            pointer-events: none;
+            animation: grid-drift 36s linear infinite;
+        }
+
+        @keyframes grid-drift {
+            from { background-position: 0 0, 0 0; }
+            to { background-position: 44px 44px, 44px 44px; }
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.035) 2px,
+                rgba(0, 0, 0, 0.035) 4px
+            );
+            opacity: 0.45;
+        }
+
+        .beam {
+            position: fixed;
+            width: 2px;
+            height: 140%;
+            top: -20%;
+            background: linear-gradient(180deg, transparent, var(--magenta), var(--violet), var(--cyan), transparent);
+            opacity: 0.18;
+            filter: blur(1px);
+            animation: beam-sweep 14s ease-in-out infinite;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .beam.b1 { left: 14%; }
+        .beam.b2 { left: 68%; animation-delay: -5s; opacity: 0.12; }
+        .beam.b3 { left: 42%; animation-delay: -9s; opacity: 0.08; width: 1px; }
+
+        @keyframes beam-sweep {
+            0%, 100% { transform: translateX(0) rotate(10deg); opacity: 0.06; }
+            50% { transform: translateX(36px) rotate(10deg); opacity: 0.22; }
+        }
+
+        /* —— Nav —— */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px clamp(16px, 4vw, 48px);
+            background: rgba(5, 5, 8, 0.7);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 45, 138, 0.18);
+        }
+
+        .nav-brand {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--blush), var(--magenta), var(--violet), var(--cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--muted);
+            transition: color 0.25s;
+        }
+
+        .nav-links a:hover { color: var(--cyan); }
+
+        .nav-cta {
+            padding: 8px 16px !important;
+            color: var(--void) !important;
+            background: linear-gradient(135deg, var(--magenta), var(--violet));
+            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+            -webkit-text-fill-color: unset !important;
+            box-shadow: var(--glow-m);
+        }
+
+        .nav-cta:hover { filter: brightness(1.12); color: var(--void) !important; }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--line);
+            color: var(--rose);
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        /* —— Hero —— */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 4em 0;
+            padding: 100px 24px 80px;
+            overflow: hidden;
         }
+
+        .hero-plane {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 38%, rgba(255, 45, 138, 0.22), transparent 48%),
+                conic-gradient(from 200deg at 65% 28%, transparent 0deg, rgba(180, 77, 255, 0.1) 50deg, transparent 90deg),
+                conic-gradient(from 30deg at 30% 60%, transparent 0deg, rgba(0, 240, 255, 0.06) 40deg, transparent 80deg);
+            z-index: 0;
+        }
+
+        .hero-frame {
+            position: absolute;
+            inset: 11% 7%;
+            border: 1px solid rgba(255, 45, 138, 0.22);
+            clip-path: polygon(0 40px, 40px 0, 100% 0, 100% calc(100% - 40px), calc(100% - 40px) 100%, 0 100%);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.55;
+        }
+
+        .hero-frame::before,
+        .hero-frame::after {
+            content: '';
+            position: absolute;
+            width: 64px;
+            height: 2px;
+            background: var(--cyan);
+            box-shadow: var(--glow-c);
+        }
+
+        .hero-frame::before { top: 0; left: 40px; }
+        .hero-frame::after { bottom: 0; right: 40px; background: var(--magenta); box-shadow: var(--glow-m); }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+        }
+
+        .hero-hud {
+            font-family: var(--font-display);
+            font-size: 0.68rem;
+            letter-spacing: 0.38em;
+            color: var(--cyan);
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: fade-up 0.8s ease forwards 0.15s;
+        }
+
+        .brand {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(2.6rem, 11vw, 5.8rem);
+            line-height: 0.98;
+            letter-spacing: 0.02em;
+            margin: 0;
+            background: linear-gradient(115deg, #fff 8%, var(--blush) 25%, var(--magenta) 50%, var(--violet) 72%, var(--cyan) 95%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 32px rgba(255, 45, 138, 0.6)) drop-shadow(0 0 4px rgba(0, 240, 255, 0.35));
+            animation: brand-shine 6s linear infinite, fade-up 0.9s ease forwards 0.25s;
+            opacity: 0;
+        }
+
+        @keyframes brand-shine {
+            to { background-position: 220% center; }
+        }
+
+        .hero-headline {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(1.1rem, 3vw, 1.55rem);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin: 26px 0 12px;
+            color: var(--text);
+            opacity: 0;
+            animation: fade-up 0.9s ease forwards 0.4s;
+        }
+
+        .hero-sub {
+            font-weight: 300;
+            font-size: 1.05rem;
+            color: var(--muted);
+            max-width: 560px;
+            margin: 0 auto 32px;
+            opacity: 0;
+            animation: fade-up 0.9s ease forwards 0.55s;
+        }
+
+        /* Beat visualizer */
+        .beat-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 5px;
+            height: 48px;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fade-up 0.9s ease forwards 0.62s;
+        }
+
+        .beat-bars span {
+            width: 5px;
+            border-radius: 3px;
+            background: linear-gradient(180deg, var(--cyan), var(--magenta));
+            box-shadow: var(--glow-c);
+            animation: bar-dance 0.9s ease-in-out infinite;
+        }
+
+        .beat-bars span:nth-child(1) { height: 18px; animation-delay: 0s; }
+        .beat-bars span:nth-child(2) { height: 32px; animation-delay: 0.1s; }
+        .beat-bars span:nth-child(3) { height: 44px; animation-delay: 0.2s; background: linear-gradient(180deg, var(--violet), var(--magenta)); }
+        .beat-bars span:nth-child(4) { height: 28px; animation-delay: 0.15s; }
+        .beat-bars span:nth-child(5) { height: 40px; animation-delay: 0.05s; }
+        .beat-bars span:nth-child(6) { height: 22px; animation-delay: 0.25s; }
+        .beat-bars span:nth-child(7) { height: 36px; animation-delay: 0.12s; }
+        .beat-bars span:nth-child(8) { height: 16px; animation-delay: 0.18s; }
+
+        @keyframes bar-dance {
+            0%, 100% { transform: scaleY(0.45); opacity: 0.6; }
+            50% { transform: scaleY(1); opacity: 1; }
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            opacity: 0;
+            animation: fade-up 0.9s ease forwards 0.7s;
+        }
+
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 28px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--void);
+            background: linear-gradient(135deg, var(--rose), var(--magenta) 55%, var(--violet));
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            box-shadow: var(--glow-m);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.03);
+            filter: brightness(1.1);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            padding: 15px 26px;
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ice);
+            border: 1px solid rgba(0, 240, 255, 0.42);
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            background: rgba(0, 240, 255, 0.07);
+            transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(0, 240, 255, 0.16);
+            box-shadow: var(--glow-c);
+            transform: translateY(-2px);
+        }
+
+        .play-badge { height: 22px; width: auto; }
+
+        /* Pulse rings */
+        .pulse-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 45, 138, 0.25);
+            pointer-events: none;
+            z-index: 0;
+            animation: pulse-expand 4s ease-out infinite;
+        }
+
+        .pulse-ring.r1 { width: 280px; height: 280px; top: 18%; left: 8%; animation-delay: 0s; }
+        .pulse-ring.r2 { width: 200px; height: 200px; bottom: 22%; right: 10%; animation-delay: -2s; border-color: rgba(0, 240, 255, 0.2); }
+
+        @keyframes pulse-expand {
+            0% { transform: scale(0.6); opacity: 0.5; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+
+        /* —— Sections —— */
         section {
-            padding: 2em;
+            position: relative;
+            padding: 88px clamp(16px, 4vw, 48px);
+        }
+
+        .section-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin: 0 0 12px;
+            background: linear-gradient(90deg, var(--text), var(--rose), var(--violet));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-desc {
+            color: var(--muted);
+            max-width: 540px;
+            margin: 0 0 48px;
+            font-weight: 300;
+        }
+
+        /* —— Proof strip —— */
+        .proof {
+            padding: 0 clamp(16px, 4vw, 48px) 20px;
+        }
+
+        .proof-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px 32px;
+            flex-wrap: wrap;
+            padding: 22px 28px;
+            background: var(--panel);
+            border: 1px solid rgba(255, 45, 138, 0.22);
+            clip-path: var(--clip-card);
+            backdrop-filter: blur(14px);
+        }
+
+        .proof-stat {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--rose);
+            text-shadow: var(--glow-m);
+        }
+
+        .proof-label {
+            font-size: 0.85rem;
+            color: var(--muted);
+            letter-spacing: 0.04em;
+        }
+
+        .proof-divider {
+            width: 1px;
+            height: 36px;
+            background: linear-gradient(180deg, transparent, var(--violet), transparent);
+        }
+
+        /* —— Games grid —— */
+        .games {
+            background: linear-gradient(180deg, transparent, rgba(180, 77, 255, 0.04), rgba(255, 45, 138, 0.03), transparent);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .game-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 22px;
+            background: var(--panel);
+            border: 1px solid rgba(255, 107, 181, 0.2);
+            clip-path: var(--clip-card);
+            text-decoration: none;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s, box-shadow 0.35s;
+            overflow: hidden;
+        }
+
+        .game-card.featured {
+            border-color: rgba(180, 77, 255, 0.45);
+            background: linear-gradient(145deg, rgba(180, 77, 255, 0.12), var(--panel));
+        }
+
+        .game-card.featured::after {
+            content: 'HOT';
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            font-family: var(--font-display);
+            font-size: 0.58rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            color: var(--void);
+            background: linear-gradient(135deg, var(--magenta), var(--violet));
+            padding: 3px 8px;
+            clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+            box-shadow: var(--glow-m);
+        }
+
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--magenta), var(--violet), var(--cyan), transparent);
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 240, 255, 0.48);
+            box-shadow: 0 22px 44px rgba(0, 0, 0, 0.45), var(--glow-c);
+        }
+
+        .game-card:hover::before { opacity: 1; }
+
+        .game-icon-wrap {
+            position: relative;
+            width: 92px;
+            height: 92px;
+            margin-bottom: 16px;
+        }
+
+        .game-icon-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px solid rgba(255, 45, 138, 0.38);
+            clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+            pointer-events: none;
+        }
+
+        .game-icon {
+            width: 92px;
+            height: 92px;
+            object-fit: cover;
+            clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+            background: #1a0e1c;
+        }
+
+        .game-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .game-tag {
+            font-family: var(--font-display);
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            border: 1px solid rgba(0, 240, 255, 0.32);
+            padding: 2px 8px;
+        }
+
+        .game-rating {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            color: var(--blush);
+            letter-spacing: 0.06em;
+        }
+
+        .game-dl-badge {
+            font-family: var(--font-display);
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            color: var(--violet);
+            border: 1px solid rgba(180, 77, 255, 0.35);
+            padding: 2px 6px;
+        }
+
+        .game-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+            margin: 0 0 8px;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .game-blurb {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin: 0 0 18px;
+            flex: 1;
+            font-weight: 300;
+        }
+
+        .game-dl {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--magenta);
+            transition: color 0.25s, gap 0.25s;
+        }
+
+        .game-card:hover .game-dl {
+            color: var(--cyan);
+            gap: 10px;
+        }
+
+        .games-footer-cta { margin-top: 40px; text-align: center; }
+
+        /* —— Drop zone —— */
+        .dropzone {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .dropzone-panel {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: clamp(36px, 6vw, 64px);
+            background:
+                linear-gradient(135deg, rgba(255, 45, 138, 0.14), rgba(180, 77, 255, 0.08), rgba(0, 240, 255, 0.06)),
+                var(--panel);
+            border: 1px solid rgba(255, 45, 138, 0.3);
+            clip-path: polygon(0 24px, 24px 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropzone-panel::after {
+            content: '';
+            position: absolute;
+            width: 240px;
+            height: 240px;
+            right: -50px;
+            bottom: -50px;
+            background: radial-gradient(circle, rgba(180, 77, 255, 0.22), transparent 70%);
+            pointer-events: none;
+        }
+
+        .dropzone-title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin: 0 0 12px;
+        }
+
+        .dropzone-copy {
+            color: var(--muted);
+            margin: 0 0 24px;
+            font-weight: 300;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.92rem;
+            color: var(--text);
+        }
+
+        .feature-list li::before {
+            content: '♪';
+            flex-shrink: 0;
+            font-size: 0.85rem;
+            color: var(--magenta);
+            text-shadow: var(--glow-m);
+            margin-top: 2px;
+        }
+
+        .dropzone-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .dropzone-visual a {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .dropzone-visual img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            border: 1px solid rgba(255, 107, 181, 0.28);
+            transition: transform 0.4s, box-shadow 0.4s;
+            background: #1a0e1c;
+        }
+
+        .dropzone-visual a:nth-child(2) img,
+        .dropzone-visual a:nth-child(3) img {
+            transform: translateY(14px);
+        }
+
+        .dropzone-visual a:hover img {
+            transform: translateY(0) scale(1.05);
+            box-shadow: var(--glow-v);
+        }
+
+        /* —— Survey —— */
+        .survey {
+            background: radial-gradient(ellipse 65% 55% at 50% 0%, rgba(180, 77, 255, 0.07), transparent);
+        }
+
+        .survey-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .survey-intro p {
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .survey-form {
+            background: var(--panel);
+            border: 1px solid rgba(0, 240, 255, 0.22);
+            clip-path: var(--clip-card);
+            padding: clamp(24px, 4vw, 36px);
+            backdrop-filter: blur(14px);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .field { margin-bottom: 16px; }
+
+        .field label {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 12px 14px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text);
+            background: rgba(5, 5, 8, 0.68);
+            border: 1px solid rgba(255, 107, 181, 0.28);
+            border-radius: 0;
+            outline: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            appearance: none;
+        }
+
+        .field select {
+            background-image: linear-gradient(45deg, transparent 50%, var(--rose) 50%),
+                linear-gradient(135deg, var(--rose) 50%, transparent 50%);
+            background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 12px) calc(50% - 2px);
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+            padding-right: 36px;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 1px rgba(0, 240, 255, 0.32);
+        }
+
+        .field textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .rating-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .rating-group input { display: none; }
+
+        .rating-group label {
+            margin: 0;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--muted);
+            border: 1px solid rgba(255, 107, 181, 0.32);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .rating-group input:checked + label,
+        .rating-group label:hover {
+            color: var(--void);
+            background: linear-gradient(135deg, var(--magenta), var(--violet));
+            border-color: var(--magenta);
+            box-shadow: var(--glow-m);
+        }
+
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .form-hint {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .form-success {
+            display: none;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border: 1px solid rgba(0, 240, 255, 0.42);
+            color: var(--ice);
+            font-size: 0.9rem;
+            background: rgba(0, 240, 255, 0.08);
+        }
+
+        .form-success.show { display: block; }
+
+        /* —— Final CTA —— */
+        .final-cta {
+            text-align: center;
+            padding-bottom: 100px;
+        }
+
+        .final-cta .section-title,
+        .final-cta .section-desc {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* —— Footer —— */
+        footer {
+            border-top: 1px solid rgba(255, 45, 138, 0.16);
+            padding: 40px clamp(16px, 4vw, 48px);
             text-align: center;
         }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1em;
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--muted);
+            transition: color 0.25s;
+        }
+
+        .footer-links a:hover { color: var(--rose); }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: rgba(168, 148, 164, 0.75);
+            margin: 0;
+        }
+
+        /* —— Reveal —— */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* —— Language —— */
+        .lang-switch {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-btn {
+            font-family: var(--font-display);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ice);
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.38);
+            padding: 8px 12px;
+            cursor: pointer;
+            clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .lang-btn:hover,
+        .lang-switch.open .lang-btn {
+            background: rgba(0, 240, 255, 0.18);
+            box-shadow: var(--glow-c);
+        }
+
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 168px;
+            max-height: 280px;
+            overflow-y: auto;
+            background: rgba(10, 6, 16, 0.97);
+            border: 1px solid rgba(255, 45, 138, 0.32);
+            clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            z-index: 120;
+            padding: 6px 0;
+        }
+
+        .lang-switch.open .lang-menu { display: block; }
+
+        .lang-menu button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--muted);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .lang-menu button:hover,
+        .lang-menu button.active {
+            color: var(--text);
+            background: rgba(255, 45, 138, 0.14);
+        }
+
+        .lang-menu button.active { color: var(--cyan); }
+
+        body.lang-cjk {
+            --font-body: 'Sora', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+            letter-spacing: 0.01em;
+        }
+
+        body.lang-cjk .section-title,
+        body.lang-cjk .dropzone-title,
+        body.lang-cjk .hero-headline,
+        body.lang-cjk .brand {
+            letter-spacing: 0.02em;
+        }
+
+        /* —— Responsive —— */
+        @media (max-width: 900px) {
+            .dropzone-panel,
+            .survey-layout { grid-template-columns: 1fr; }
+
+            .dropzone-visual a:nth-child(2) img,
+            .dropzone-visual a:nth-child(3) img { transform: none; }
+
+            .proof-divider { display: none; }
+        }
+
+        @media (max-width: 720px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: rgba(10, 6, 16, 0.97);
+                border-bottom: 1px solid var(--line);
+                padding: 12px 0;
+            }
+
+            .nav-links.open { display: flex; }
+
+            .nav-links a {
+                padding: 14px 24px;
+                width: 100%;
+            }
+
+            .nav-toggle { display: block; }
+            .form-row { grid-template-columns: 1fr; }
+            .hero-frame { inset: 8% 4%; }
+
+            .lang-switch {
+                margin: 8px 24px 12px;
+                width: calc(100% - 48px);
+            }
         }
     </style>
+    <script src="i18n.js"></script>
 </head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11397557123"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-11397557123');
-</script>
 <body>
-    <header>
-        <h1>Welcome to ThreeCookersGame</h1>
-        <p>Creating Games, Igniting Passion</p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        <span id="busuanzi_value_site_uv"></span>
+    </span>
+
+    <div class="cyber-bg" aria-hidden="true"></div>
+    <div class="cyber-grid" aria-hidden="true"></div>
+    <div class="beam b1" aria-hidden="true"></div>
+    <div class="beam b2" aria-hidden="true"></div>
+    <div class="beam b3" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <nav class="nav">
+        <a href="#" class="nav-brand">Three Cookers</a>
+        <button class="nav-toggle" id="navToggle" type="button" data-i18n="nav_menu" data-i18n-aria="nav_menu">MENU</button>
+        <div class="nav-links" id="navLinks">
+            <a href="#games" data-i18n="nav_games">Games</a>
+            <a href="#drop" data-i18n="nav_download">Download</a>
+            <a href="#feedback" data-i18n="nav_feedback">Feedback</a>
+            <div class="lang-switch" id="langSwitch">
+                <button type="button" class="lang-btn" id="langBtn" aria-haspopup="listbox" aria-expanded="false">
+                    <span data-i18n="lang_label">Language</span>: <span id="langCurrent">EN</span>
+                </button>
+                <div class="lang-menu" id="langMenu" role="listbox"></div>
+            </div>
+            <a class="nav-cta store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="nav_store">Play Store</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-plane" aria-hidden="true"></div>
+        <div class="hero-frame" aria-hidden="true"></div>
+        <div class="pulse-ring r1" aria-hidden="true"></div>
+        <div class="pulse-ring r2" aria-hidden="true"></div>
+        <div class="hero-content">
+            <p class="hero-hud" data-i18n="hero_hud">// BEAT SYNC — FEMININE CYBER RHYTHM</p>
+            <h1 class="brand">Three Cookers</h1>
+            <p class="hero-headline" data-i18n="hero_headline">Feel the beat. Glow in neon. Play with heart.</p>
+            <div class="beat-bars" aria-hidden="true">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <p class="hero-sub" data-i18n="hero_sub">Music games crafted for rhythm lovers — soft cyber aesthetics, cute energy, and EDM pulses that hit different.</p>
+            <div class="cta-row">
+                <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener">
+                    <img class="play-badge" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="">
+                    <span data-i18n="cta_arsenal">Sync to Play Store</span>
+                </a>
+                <a class="btn-ghost" href="#games" data-i18n="cta_browse">Browse tracks</a>
+            </div>
+        </div>
     </header>
-    <section>
-        <h2>About Us</h2>
-        <p>ThreeCookersGame is a creative and passionate game development team. We focus on delivering exciting gaming experiences that provide endless fun for players.</p>
+
+    <div class="proof">
+        <div class="proof-inner reveal">
+            <div>
+                <div class="proof-stat" id="visitor-count">10M+</div>
+                <div class="proof-label" data-i18n="proof_downloads">total rhythm sessions</div>
+            </div>
+            <div class="proof-divider" aria-hidden="true"></div>
+            <div>
+                <div class="proof-stat">4</div>
+                <div class="proof-label" data-i18n="proof_titles">live music titles</div>
+            </div>
+            <div class="proof-divider" aria-hidden="true"></div>
+            <div>
+                <div class="proof-stat">2023</div>
+                <div class="proof-label" data-i18n="proof_since">studio pulsing since</div>
+            </div>
+        </div>
+    </div>
+
+    <section class="games" id="games">
+        <div class="section-inner">
+            <p class="section-label reveal" data-i18n="games_label">// Track Library</p>
+            <h2 class="section-title reveal" data-i18n="games_title">Pick your rhythm</h2>
+            <p class="section-desc reveal" data-i18n="games_desc">Every title below is live on our Google Play developer page. Tap download and drop into the beat.</p>
+
+            <div class="games-grid" id="gamesGrid"></div>
+
+            <div class="games-footer-cta reveal">
+                <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="games_profile">
+                    View full studio profile
+                </a>
+            </div>
+        </div>
     </section>
-    <section>
-        <h2>Our Mission</h2>
-        <p>Our mission is to bring games to global players through innovation, quality, and fun. Our game stories are rich, gameplay is diverse, and designed to capture your hearts.</p>
+
+    <section class="dropzone" id="drop">
+        <div class="dropzone-panel reveal">
+            <div>
+                <p class="section-label" data-i18n="drop_label">// Drop Protocol</p>
+                <h2 class="dropzone-title" data-i18n="drop_title">One tap. Instant groove.</h2>
+                <p class="dropzone-copy" data-i18n="drop_copy">We build music games for players who crave color, beat, and cute cyber vibes — shipped straight to Google Play.</p>
+                <ul class="feature-list">
+                    <li data-i18n="drop_f1">Direct Google Play links for every Three Cookers title</li>
+                    <li data-i18n="drop_f2">Feminine neon visuals with rhythm-speed gameplay</li>
+                    <li data-i18n="drop_f3">Feedback channel open — your beat shapes the next drop</li>
+                </ul>
+                <div style="margin-top: 28px;">
+                    <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="drop_cta">
+                        Download on Google Play
+                    </a>
+                </div>
+            </div>
+            <div class="dropzone-visual" id="dropzoneVisual"></div>
+        </div>
     </section>
-    <section>
-        <h2>Our Vision</h2>
-        <p>Our vision is to become one of the world's most beloved game development teams. We firmly believe that games are a medium to connect people, convey stories, and ignite passion.</p>
+
+    <section class="survey" id="feedback">
+        <div class="section-inner">
+            <div class="survey-layout">
+                <div class="survey-intro reveal">
+                    <p class="section-label" data-i18n="feedback_label">// Signal Request</p>
+                    <h2 class="section-title" data-i18n="feedback_title">Send us a beat</h2>
+                    <p data-i18n="feedback_intro">Feature wish, bug report, or vibe check? Fill the form — it opens your mail app with a ready-to-send message to the studio.</p>
+                    <p style="margin-top: 20px;">
+                        <span data-i18n="feedback_or">Or write us directly:</span><br>
+                        <a href="mailto:youuhakuga@gmail.com" style="color: var(--rose); font-weight: 500; text-decoration: none;">youuhakuga@gmail.com</a>
+                    </p>
+                </div>
+
+                <form class="survey-form reveal" id="feedbackForm" novalidate>
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="name" data-i18n="label_name">Callsign (optional)</label>
+                            <input type="text" id="name" name="name" data-i18n-placeholder="ph_name" placeholder="Your name" autocomplete="name">
+                        </div>
+                        <div class="field">
+                            <label for="email" data-i18n="label_email">Reply channel (optional)</label>
+                            <input type="email" id="email" name="email" data-i18n-placeholder="ph_email" placeholder="you@email.com" autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="game" data-i18n="label_game">Favorite / related title</label>
+                        <select id="game" name="game">
+                            <option value="General / Studio" data-i18n="opt_general">General / Studio</option>
+                            <option value="Music Hop: EDM Rush">Music Hop: EDM Rush</option>
+                            <option value="Dream Notes: Cute Music Game">Dream Notes: Cute Music Game</option>
+                            <option value="Beat Notes Cyber Music Game">Beat Notes Cyber Music Game</option>
+                            <option value="Rhythm Racer Music Go">Rhythm Racer Music Go</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label data-i18n="label_rating">How's the vibe? (1–5)</label>
+                        <div class="rating-group" role="radiogroup" aria-label="Rating">
+                            <input type="radio" name="rating" id="r1" value="1"><label for="r1">1</label>
+                            <input type="radio" name="rating" id="r2" value="2"><label for="r2">2</label>
+                            <input type="radio" name="rating" id="r3" value="3"><label for="r3">3</label>
+                            <input type="radio" name="rating" id="r4" value="4"><label for="r4">4</label>
+                            <input type="radio" name="rating" id="r5" value="5" checked><label for="r5">5</label>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="message" data-i18n="label_message">Your suggestion</label>
+                        <textarea id="message" name="message" required data-i18n-placeholder="ph_message" placeholder="Tell us what to build, fix, or amplify…"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary" data-i18n="btn_send">Send via email</button>
+                        <p class="form-hint" data-i18n="form_hint">Opens your email app → youuhakuga@gmail.com</p>
+                    </div>
+                    <div class="form-success" id="formSuccess" role="status" data-i18n="form_success">Mail draft ready. Hit send in your email app to deliver the signal.</div>
+                </form>
+            </div>
+        </div>
     </section>
+
+    <section class="final-cta">
+        <div class="section-inner reveal">
+            <p class="section-label" data-i18n="final_label">// Ready</p>
+            <h2 class="section-title" data-i18n="final_title">Deploy your next session</h2>
+            <p class="section-desc" data-i18n="final_desc">Jump to Three Cookers Game on Google Play and pick a track. Soft neon beats, zero friction.</p>
+            <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener">
+                <img class="play-badge" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="">
+                <span data-i18n="final_cta">Open Google Play</span>
+            </a>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2023 ThreeCookersGame. All Rights Reserved.</p>
+        <div class="footer-links">
+            <a href="privacy.txt" data-i18n="foot_privacy">Privacy Policy</a>
+            <a href="termsofuse.txt" data-i18n="foot_terms">Terms of Use</a>
+            <a href="mailto:youuhakuga@gmail.com" data-i18n="foot_contact">Contact</a>
+            <a class="store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="foot_store">Store Profile</a>
+            <a href="#feedback" data-i18n="foot_feedback">Feedback</a>
+        </div>
+        <p class="footer-copy" data-i18n="foot_copy">&copy; 2026 Three Cookers Game. Rhythm, love, cyber heart.</p>
     </footer>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11397557123"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'AW-11397557123');
+    </script>
+
+    <script>
+        const DEV_ID = '7284685214396674198';
+        const CONTACT_EMAIL = 'youuhakuga@gmail.com';
+        const GAMES = [
+            {
+                id: 'com.music.hop.game.run.ball.magic.edm.piano.tiles.beats',
+                name: 'Music Hop: EDM Rush',
+                tag: 'EDM',
+                rating: '4.0',
+                featured: true,
+                downloads: '10M+',
+                icon: 'https://play-lh.googleusercontent.com/7r0pG0wtwn_j9RYC7cFLClvf6vvv-uTWjKZ4HHJ25uLenJYj8g3hSfJirbQUhZvfcmj6FEj98AHXNhKJwIcEYmc=s256-rw'
+            },
+            {
+                id: 'com.music.game.cute.run.ball.magic.edm.piano.tiles.beats',
+                name: 'Dream Notes: Cute Music Game',
+                tag: 'Cute',
+                rating: '3.9',
+                icon: 'https://play-lh.googleusercontent.com/eGso9WQi72hTlp3XaGnYPjH3cvpogqsFJAdr0s470UtXL9jpzYfYfz9UpcCF19GYFAmW0Mj1Ok5Sbt0hsJErRQ=s256-rw'
+            },
+            {
+                id: 'com.music.game.cyber.run.ball.magic.edm.piano.tiles.beats',
+                name: 'Beat Notes Cyber Music Game',
+                tag: 'Cyber',
+                rating: '3.8',
+                icon: 'https://play-lh.googleusercontent.com/4xy7GVBeJBHHHVKbDNRKY8m8xTcADWE99CGQTQ5Uw49Vv9G0b1zlzLSaYjyRnsAGj0hBZ8VdG8-HUAHB0yIL=s256-rw'
+            },
+            {
+                id: 'com.music.game.car.run.ball.magic.edm.piano.tiles.beats',
+                name: 'Rhythm Racer Music Go',
+                tag: 'Racing',
+                rating: '3.9',
+                icon: 'https://play-lh.googleusercontent.com/LuHT2Zf5o41tlC0oAfgKiGVhmrbBMqH_DOy9WK8r3omWJnvW3s5GCCyKNnURgy9mk5nvN5h_IaKJ2qpIwv8qV8A=s256-rw'
+            }
+        ];
+
+        const I18N = window.TCG_I18N;
+        let currentLang = 'en';
+        let revealObserver = null;
+
+        function t(key) {
+            const pack = I18N.dict[currentLang] || I18N.dict.en;
+            return (pack && pack[key] != null) ? pack[key] : (I18N.dict.en[key] || key);
+        }
+
+        function langMeta(code) {
+            return I18N.langs.find((l) => l.code === code) || I18N.langs[0];
+        }
+
+        function detectLang() {
+            const params = new URLSearchParams(location.search);
+            const fromUrl = params.get('lang');
+            if (fromUrl && I18N.dict[fromUrl]) return fromUrl;
+
+            const saved = localStorage.getItem('threecookers_lang');
+            if (saved && I18N.dict[saved]) return saved;
+            const nav = (navigator.language || 'en').toLowerCase();
+            if (nav.startsWith('zh-tw') || nav.startsWith('zh-hk') || nav.startsWith('zh-mo') || nav === 'zh-hant') return 'zh-TW';
+            if (nav.startsWith('zh')) return 'zh';
+            const short = nav.slice(0, 2);
+            const map = { ja: 'ja', ko: 'ko', es: 'es', pt: 'pt', id: 'id', de: 'de', fr: 'fr', ru: 'ru', en: 'en' };
+            return map[short] || 'en';
+        }
+
+        function storeDevUrl() {
+            const m = langMeta(currentLang);
+            return 'https://play.google.com/store/apps/dev?id=' + DEV_ID + '&hl=' + m.hl + '&gl=' + m.gl;
+        }
+
+        function storeUrl(id) {
+            const m = langMeta(currentLang);
+            return 'https://play.google.com/store/apps/details?id=' + id + '&hl=' + m.hl + '&gl=' + m.gl;
+        }
+
+        function applyStaticI18n() {
+            document.querySelectorAll('[data-i18n]').forEach((el) => {
+                const key = el.getAttribute('data-i18n');
+                const val = t(key);
+                if (el.tagName === 'OPTION') {
+                    el.textContent = val;
+                } else {
+                    el.textContent = val;
+                }
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+                el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
+            });
+            document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+                el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria')));
+            });
+
+            document.title = t('meta_title');
+            const meta = document.querySelector('meta[name="description"]');
+            if (meta) meta.setAttribute('content', t('meta_desc'));
+            document.documentElement.lang = currentLang === 'zh-TW' ? 'zh-Hant' : currentLang;
+
+            const cjk = currentLang === 'zh' || currentLang === 'zh-TW' || currentLang === 'ja' || currentLang === 'ko';
+            document.body.classList.toggle('lang-cjk', cjk);
+
+            document.getElementById('langCurrent').textContent = langMeta(currentLang).label;
+
+            document.querySelectorAll('.store-link').forEach((a) => {
+                a.href = storeDevUrl();
+            });
+            document.querySelectorAll('.game-store-link').forEach((a) => {
+                const id = a.getAttribute('data-app');
+                if (id) a.href = storeUrl(id);
+            });
+
+            document.querySelectorAll('#langMenu button').forEach((btn) => {
+                btn.classList.toggle('active', btn.dataset.lang === currentLang);
+            });
+        }
+
+        function renderGames() {
+            const pack = I18N.dict[currentLang] || I18N.dict.en;
+            const tags = pack.tags || I18N.dict.en.tags;
+            const blurbs = pack.blurbs || I18N.dict.en.blurbs;
+            const dl = t('game_dl');
+            const grid = document.getElementById('gamesGrid');
+            const wasVisible = !!grid.querySelector('.reveal.visible');
+
+            grid.innerHTML = GAMES.map((g, i) => `
+                <a class="game-card reveal${g.featured ? ' featured' : ''}${wasVisible ? ' visible' : ''}" href="${storeUrl(g.id)}" target="_blank" rel="noopener" style="transition-delay: ${Math.min(i * 0.06, 0.3)}s">
+                    <div class="game-icon-wrap">
+                        <img class="game-icon" src="${g.icon}" alt="" loading="lazy" width="92" height="92">
+                    </div>
+                    <div class="game-meta">
+                        <span class="game-tag">${tags[g.tag] || g.tag}</span>
+                        ${g.rating ? `<span class="game-rating">★ ${g.rating}</span>` : ''}
+                        ${g.downloads ? `<span class="game-dl-badge">${g.downloads}</span>` : ''}
+                    </div>
+                    <h3 class="game-name">${g.name}</h3>
+                    <p class="game-blurb">${blurbs[i] || ''}</p>
+                    <span class="game-dl">${dl}</span>
+                </a>
+            `).join('');
+
+            if (revealObserver) {
+                grid.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+            }
+        }
+
+        function renderDropzone() {
+            const visual = document.getElementById('dropzoneVisual');
+            visual.innerHTML = GAMES.map((g) => `
+                <a class="game-store-link" data-app="${g.id}" href="${storeUrl(g.id)}" target="_blank" rel="noopener">
+                    <img src="${g.icon}" alt="${g.name}">
+                </a>
+            `).join('');
+        }
+
+        function setLang(code) {
+            if (!I18N.dict[code]) code = 'en';
+            currentLang = code;
+            localStorage.setItem('threecookers_lang', code);
+            const url = new URL(location.href);
+            url.searchParams.set('lang', code);
+            history.replaceState(null, '', url);
+            applyStaticI18n();
+            renderGames();
+            renderDropzone();
+            document.getElementById('langSwitch').classList.remove('open');
+            document.getElementById('langBtn').setAttribute('aria-expanded', 'false');
+        }
+
+        function setupLang() {
+            const menu = document.getElementById('langMenu');
+            const switcher = document.getElementById('langSwitch');
+            const btn = document.getElementById('langBtn');
+
+            menu.innerHTML = I18N.langs.map((l) =>
+                `<button type="button" role="option" data-lang="${l.code}">${l.native}</button>`
+            ).join('');
+
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const open = switcher.classList.toggle('open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+
+            menu.addEventListener('click', (e) => {
+                const target = e.target.closest('button[data-lang]');
+                if (!target) return;
+                setLang(target.dataset.lang);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!switcher.contains(e.target)) {
+                    switcher.classList.remove('open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        function startCounting() {
+            const target = document.getElementById('visitor-count');
+            const baseNumber = 10000000;
+            let counterScraper = setInterval(function () {
+                const uvData = document.getElementById('busuanzi_value_site_uv');
+                if (uvData && uvData.textContent.trim() !== '') {
+                    const actualVisits = parseInt(uvData.textContent, 10);
+                    if (!isNaN(actualVisits)) {
+                        target.innerText = (baseNumber + actualVisits).toLocaleString() + '+';
+                        clearInterval(counterScraper);
+                    }
+                }
+            }, 500);
+            setTimeout(() => clearInterval(counterScraper), 10000);
+        }
+
+        function setupReveal() {
+            revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((e) => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        revealObserver.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+        }
+
+        function setupNav() {
+            const toggle = document.getElementById('navToggle');
+            const links = document.getElementById('navLinks');
+            toggle.addEventListener('click', () => links.classList.toggle('open'));
+            links.querySelectorAll('a').forEach((a) => {
+                a.addEventListener('click', () => links.classList.remove('open'));
+            });
+        }
+
+        function setupFeedbackForm() {
+            const form = document.getElementById('feedbackForm');
+            const success = document.getElementById('formSuccess');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const message = document.getElementById('message').value.trim();
+                if (!message) {
+                    document.getElementById('message').focus();
+                    return;
+                }
+                const name = document.getElementById('name').value.trim() || t('mail_anon');
+                const email = document.getElementById('email').value.trim() || t('mail_noreply');
+                const game = document.getElementById('game').value;
+                const rating = (form.querySelector('input[name="rating"]:checked') || {}).value || 'N/A';
+
+                const subject = encodeURIComponent(
+                    t('mail_subject').replace('{game}', game).replace('{rating}', rating)
+                );
+                const body = encodeURIComponent(
+                    t('mail_body')
+                        .replace('{name}', name)
+                        .replace('{email}', email)
+                        .replace('{game}', game)
+                        .replace('{rating}', rating)
+                        .replace('{message}', message)
+                );
+
+                success.classList.add('show');
+                window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + subject + '&body=' + body;
+            });
+        }
+
+        currentLang = detectLang();
+        setupLang();
+        applyStaticI18n();
+        renderGames();
+        renderDropzone();
+        setupNav();
+        setupFeedbackForm();
+        window.addEventListener('load', () => {
+            startCounting();
+            setupReveal();
+        });
+    </script>
 </body>
 </html>
