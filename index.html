@@ -171,6 +171,34 @@
 
         .nav-cta:hover { filter: brightness(1.12); color: var(--void) !important; }
 
+        .nav-store-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-cta-ios {
+            padding: 8px 16px !important;
+            color: var(--void) !important;
+            background: linear-gradient(135deg, #eefbff, var(--ice) 45%, var(--violet));
+            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+            -webkit-text-fill-color: unset !important;
+            box-shadow: var(--glow-v);
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: filter 0.25s, transform 0.25s;
+        }
+
+        .nav-cta-ios:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+            color: var(--void) !important;
+        }
+
         .nav-toggle {
             display: none;
             background: none;
@@ -386,7 +414,47 @@
             transform: translateY(-2px);
         }
 
+        .btn-ios {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 28px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--void);
+            background: linear-gradient(135deg, #f4fbff, var(--ice) 35%, #c89bff 78%, var(--violet));
+            clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+            box-shadow: var(--glow-v), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-ios:hover {
+            transform: translateY(-3px) scale(1.03);
+            filter: brightness(1.08);
+        }
+
+        .store-badge {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .store-dual-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            align-items: center;
+        }
+
         .play-badge { height: 22px; width: auto; }
+        .app-badge { height: 22px; width: auto; }
 
         /* Pulse rings */
         .pulse-ring {
@@ -484,6 +552,240 @@
             width: 1px;
             height: 36px;
             background: linear-gradient(180deg, transparent, var(--violet), transparent);
+        }
+
+        /* —— Rhythm Lab / Arcade —— */
+        .playzone {
+            background: linear-gradient(180deg, transparent, rgba(255, 45, 138, 0.04), rgba(180, 77, 255, 0.05), transparent);
+        }
+
+        .playzone-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .mini-game {
+            background: var(--panel);
+            border: 1px solid rgba(255, 107, 181, 0.22);
+            clip-path: var(--clip-card);
+            padding: clamp(20px, 3vw, 28px);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            backdrop-filter: blur(12px);
+        }
+
+        .mini-game-title {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.05rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--rose);
+        }
+
+        .mini-game-desc {
+            margin: 0;
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-weight: 300;
+        }
+
+        .game-hud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            font-family: var(--font-display);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--cyan);
+        }
+
+        .game-hud strong {
+            color: var(--blush);
+            font-size: 0.95rem;
+            margin-left: 4px;
+        }
+
+        .game-feedback {
+            min-height: 1.2em;
+            font-family: var(--font-display);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .game-feedback.show { opacity: 1; }
+        .game-feedback.good { color: var(--cyan); text-shadow: var(--glow-c); }
+        .game-feedback.miss { color: var(--magenta); }
+
+        .btn-game {
+            align-self: flex-start;
+            padding: 10px 20px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--void);
+            background: linear-gradient(135deg, var(--rose), var(--violet));
+            border: none;
+            clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+            box-shadow: var(--glow-m);
+            cursor: pointer;
+            transition: filter 0.2s, transform 0.2s;
+        }
+
+        .btn-game:hover:not(:disabled) {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        .btn-game:disabled { opacity: 0.55; cursor: default; }
+
+        /* Beat Sync pads */
+        .pad-stage {
+            position: relative;
+            padding: 12px 8px 16px;
+            background: rgba(5, 5, 8, 0.5);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            clip-path: polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+
+        .pad-lanes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .pad-lane {
+            aspect-ratio: 1;
+            max-height: 72px;
+            border: 1px solid rgba(255, 107, 181, 0.25);
+            background: rgba(255, 45, 138, 0.06);
+            clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: background 0.12s, box-shadow 0.12s, transform 0.12s;
+            position: relative;
+        }
+
+        .pad-lane::after {
+            content: '♪';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        .pad-lane:nth-child(1) { border-color: rgba(0, 240, 255, 0.3); }
+        .pad-lane:nth-child(2) { border-color: rgba(255, 107, 181, 0.35); }
+        .pad-lane:nth-child(3) { border-color: rgba(180, 77, 255, 0.35); }
+        .pad-lane:nth-child(4) { border-color: rgba(255, 192, 220, 0.35); }
+
+        .pad-lane.glow {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.35), rgba(180, 77, 255, 0.35));
+            box-shadow: var(--glow-v), var(--glow-c);
+            transform: scale(1.06);
+            animation: pad-pulse 0.4s ease-in-out infinite;
+        }
+
+        .pad-lane.hit {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.5), rgba(255, 45, 138, 0.4));
+            box-shadow: var(--glow-c);
+        }
+
+        .pad-lane.miss {
+            background: rgba(255, 45, 138, 0.25);
+            animation: pad-shake 0.25s ease;
+        }
+
+        @keyframes pad-pulse {
+            50% { filter: brightness(1.15); }
+        }
+
+        @keyframes pad-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+
+        /* Neon Tiles */
+        .tile-stage {
+            position: relative;
+            height: 260px;
+            background: rgba(5, 5, 8, 0.55);
+            border: 1px solid rgba(180, 77, 255, 0.2);
+            clip-path: polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+            overflow: hidden;
+        }
+
+        .tile-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            height: 100%;
+            gap: 6px;
+            padding: 8px;
+        }
+
+        .tile-col {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 107, 181, 0.18);
+            background: rgba(255, 45, 138, 0.04);
+            cursor: pointer;
+            touch-action: manipulation;
+            transition: background 0.12s, box-shadow 0.12s;
+        }
+
+        .tile-col.flash {
+            background: rgba(0, 240, 255, 0.12);
+            box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.25);
+        }
+
+        .tile-col.miss-flash {
+            background: rgba(255, 45, 138, 0.15);
+        }
+
+        .tile-hitline {
+            position: absolute;
+            left: 8px;
+            right: 8px;
+            bottom: 48px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), var(--violet), transparent);
+            box-shadow: var(--glow-c);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .tile-note {
+            position: absolute;
+            top: 0;
+            left: 12%;
+            width: 76%;
+            height: 40px;
+            border-radius: 4px;
+            opacity: 0.92;
+            box-shadow: 0 0 16px rgba(180, 77, 255, 0.45);
+            clip-path: polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px);
+            will-change: transform;
+            pointer-events: none;
+        }
+
+        .tile-note.pop {
+            transform: scale(1.2) !important;
+            opacity: 0;
+            transition: transform 0.15s, opacity 0.15s;
         }
 
         /* —— Games grid —— */
@@ -625,25 +927,77 @@
             font-weight: 300;
         }
 
-        .game-dl {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: var(--font-display);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--magenta);
-            transition: color 0.25s, gap 0.25s;
+        .game-stores {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: auto;
         }
 
-        .game-card:hover .game-dl {
-            color: var(--cyan);
-            gap: 10px;
+        .game-stores.has-ios {
+            gap: 12px;
+        }
+
+        .store-badge-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 12px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 107, 181, 0.28);
+            background: rgba(5, 5, 8, 0.45);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .store-badge-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .store-badge-link.android:hover {
+            border-color: rgba(0, 240, 255, 0.45);
+            box-shadow: var(--glow-c);
+        }
+
+        .store-badge-link.ios {
+            border-color: rgba(180, 77, 255, 0.45);
+            background: linear-gradient(135deg, rgba(180, 77, 255, 0.18), rgba(0, 240, 255, 0.08));
+            box-shadow: var(--glow-v);
+        }
+
+        .store-badge-link.ios:hover {
+            border-color: rgba(180, 77, 255, 0.65);
+            box-shadow: 0 0 32px rgba(180, 77, 255, 0.35);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        .store-badge-link .store-badge {
+            height: 34px;
+        }
+
+        .game-platform-tag {
+            font-family: var(--font-display);
+            font-size: 0.58rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--void);
+            background: linear-gradient(135deg, var(--ice), var(--violet));
+            border: none;
+            padding: 3px 8px;
+            box-shadow: var(--glow-v);
+        }
+
+        .game-card.has-ios {
+            border-color: rgba(180, 77, 255, 0.32);
         }
 
         .games-footer-cta { margin-top: 40px; text-align: center; }
+
+        .dropzone-store-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 28px;
+        }
 
         /* —— Drop zone —— */
         .dropzone {
@@ -726,12 +1080,13 @@
             gap: 14px;
         }
 
-        .dropzone-visual a {
-            position: relative;
-            text-decoration: none;
+        .dropzone-game {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
-        .dropzone-visual img {
+        .dropzone-visual img.icon {
             width: 100%;
             aspect-ratio: 1;
             object-fit: cover;
@@ -741,12 +1096,26 @@
             background: #1a0e1c;
         }
 
-        .dropzone-visual a:nth-child(2) img,
-        .dropzone-visual a:nth-child(3) img {
+        .dropzone-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .dropzone-badges .store-badge-link {
+            padding: 6px 8px;
+        }
+
+        .dropzone-badges .store-badge {
+            height: 28px;
+        }
+
+        .dropzone-visual .dropzone-game:nth-child(2) .icon,
+        .dropzone-visual .dropzone-game:nth-child(3) .icon {
             transform: translateY(14px);
         }
 
-        .dropzone-visual a:hover img {
+        .dropzone-visual .dropzone-game:hover .icon {
             transform: translateY(0) scale(1.05);
             box-shadow: var(--glow-v);
         }
@@ -1030,10 +1399,11 @@
         /* —— Responsive —— */
         @media (max-width: 900px) {
             .dropzone-panel,
-            .survey-layout { grid-template-columns: 1fr; }
+            .survey-layout,
+            .playzone-grid { grid-template-columns: 1fr; }
 
-            .dropzone-visual a:nth-child(2) img,
-            .dropzone-visual a:nth-child(3) img { transform: none; }
+            .dropzone-visual .dropzone-game:nth-child(2) .icon,
+            .dropzone-visual .dropzone-game:nth-child(3) .icon { transform: none; }
 
             .proof-divider { display: none; }
         }
@@ -1062,6 +1432,12 @@
             .form-row { grid-template-columns: 1fr; }
             .hero-frame { inset: 8% 4%; }
 
+            .nav-store-group {
+                flex-direction: column;
+                width: calc(100% - 48px);
+                margin: 8px 24px 12px;
+            }
+
             .lang-switch {
                 margin: 8px 24px 12px;
                 width: calc(100% - 48px);
@@ -1069,6 +1445,7 @@
         }
     </style>
     <script src="i18n.js"></script>
+    <script src="arcade.js"></script>
 </head>
 <body>
     <span id="busuanzi_container_site_uv" style="display:none">
@@ -1086,6 +1463,7 @@
         <a href="#" class="nav-brand">Three Cookers</a>
         <button class="nav-toggle" id="navToggle" type="button" data-i18n="nav_menu" data-i18n-aria="nav_menu">MENU</button>
         <div class="nav-links" id="navLinks">
+            <a href="#play" data-i18n="nav_play">Play</a>
             <a href="#games" data-i18n="nav_games">Games</a>
             <a href="#drop" data-i18n="nav_download">Download</a>
             <a href="#feedback" data-i18n="nav_feedback">Feedback</a>
@@ -1095,7 +1473,10 @@
                 </button>
                 <div class="lang-menu" id="langMenu" role="listbox"></div>
             </div>
-            <a class="nav-cta store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="nav_store">Play Store</a>
+            <div class="nav-store-group">
+                <a class="nav-cta android-dev-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="nav_store">Play Store</a>
+                <a class="nav-cta-ios ios-dev-link" href="https://apps.apple.com/us/developer/id1596857276" target="_blank" rel="noopener" data-i18n="nav_app_store">App Store</a>
+            </div>
         </div>
     </nav>
 
@@ -1114,10 +1495,15 @@
             </div>
             <p class="hero-sub" data-i18n="hero_sub">Music games crafted for rhythm lovers — soft cyber aesthetics, cute energy, and EDM pulses that hit different.</p>
             <div class="cta-row">
-                <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener">
+                <a class="btn-primary android-dev-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener">
                     <img class="play-badge" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="">
-                    <span data-i18n="cta_arsenal">Sync to Play Store</span>
+                    <span data-i18n="cta_arsenal">Get on Google Play</span>
                 </a>
+                <a class="btn-ios ios-dev-link" href="https://apps.apple.com/us/developer/id1596857276" target="_blank" rel="noopener">
+                    <img class="app-badge" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="">
+                    <span data-i18n="cta_app_store">Get on App Store</span>
+                </a>
+                <a class="btn-ghost" href="#play" data-i18n="cta_play">Try rhythm lab</a>
                 <a class="btn-ghost" href="#games" data-i18n="cta_browse">Browse tracks</a>
             </div>
         </div>
@@ -1142,6 +1528,56 @@
         </div>
     </div>
 
+    <section class="playzone" id="play">
+        <div class="section-inner">
+            <p class="section-label reveal" data-i18n="play_label">// Rhythm Lab</p>
+            <h2 class="section-title reveal" data-i18n="play_title">Tap the neon</h2>
+            <p class="section-desc reveal" data-i18n="play_desc">Two bite-size rhythm demos on the page — warm up your reflexes, then download the full tracks.</p>
+
+            <div class="playzone-grid">
+                <div class="mini-game reveal">
+                    <h3 class="mini-game-title" data-i18n="play_pads_title">Beat Sync</h3>
+                    <p class="mini-game-desc" data-i18n="play_pads_desc">Tap the glowing lane on beat. Chain combos for cyber sparkle.</p>
+                    <div class="game-hud">
+                        <span><span data-i18n-arcade="play_score">Score</span> <strong id="padScore">0</strong></span>
+                        <span><span data-i18n-arcade="play_combo">Combo</span> <strong id="padCombo">0</strong></span>
+                        <span><span data-i18n-arcade="play_best">Best</span> <strong id="padBest">0</strong></span>
+                    </div>
+                    <div class="pad-stage">
+                        <div class="pad-lanes" id="padLanes">
+                            <div class="pad-lane" role="button" tabindex="0" aria-label="Lane 1"></div>
+                            <div class="pad-lane" role="button" tabindex="0" aria-label="Lane 2"></div>
+                            <div class="pad-lane" role="button" tabindex="0" aria-label="Lane 3"></div>
+                            <div class="pad-lane" role="button" tabindex="0" aria-label="Lane 4"></div>
+                        </div>
+                    </div>
+                    <div class="game-feedback" id="padFeedback" aria-live="polite"></div>
+                    <button type="button" class="btn-game" id="padStartBtn" data-i18n-arcade="play_start">Start</button>
+                </div>
+
+                <div class="mini-game reveal">
+                    <h3 class="mini-game-title" data-i18n="play_tiles_title">Neon Tiles</h3>
+                    <p class="mini-game-desc" data-i18n="play_tiles_desc">Three lanes, falling tiles — tap before they slip past the line.</p>
+                    <div class="game-hud">
+                        <span><span data-i18n-arcade="play_score">Score</span> <strong id="tileScore">0</strong></span>
+                        <span><span data-i18n-arcade="play_combo">Combo</span> <strong id="tileCombo">0</strong></span>
+                        <span><span data-i18n-arcade="play_best">Best</span> <strong id="tileBest">0</strong></span>
+                    </div>
+                    <div class="tile-stage">
+                        <div class="tile-hitline" aria-hidden="true"></div>
+                        <div class="tile-board" id="tileBoard">
+                            <div class="tile-col" role="button" tabindex="0" aria-label="Column 1"></div>
+                            <div class="tile-col" role="button" tabindex="0" aria-label="Column 2"></div>
+                            <div class="tile-col" role="button" tabindex="0" aria-label="Column 3"></div>
+                        </div>
+                    </div>
+                    <div class="game-feedback" id="tileFeedback" aria-live="polite"></div>
+                    <button type="button" class="btn-game" id="tileStartBtn" data-i18n-arcade="play_start">Start</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="games" id="games">
         <div class="section-inner">
             <p class="section-label reveal" data-i18n="games_label">// Track Library</p>
@@ -1150,9 +1586,12 @@
 
             <div class="games-grid" id="gamesGrid"></div>
 
-            <div class="games-footer-cta reveal">
-                <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="games_profile">
-                    View full studio profile
+            <div class="games-footer-cta reveal store-dual-row">
+                <a class="btn-primary android-dev-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="games_profile">
+                    Google Play studio
+                </a>
+                <a class="btn-ios ios-dev-link" href="https://apps.apple.com/us/developer/id1596857276" target="_blank" rel="noopener" data-i18n="games_profile_ios">
+                    App Store studio
                 </a>
             </div>
         </div>
@@ -1169,9 +1608,12 @@
                     <li data-i18n="drop_f2">Feminine neon visuals with rhythm-speed gameplay</li>
                     <li data-i18n="drop_f3">Feedback channel open — your beat shapes the next drop</li>
                 </ul>
-                <div style="margin-top: 28px;">
-                    <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="drop_cta">
-                        Download on Google Play
+                <div class="dropzone-store-row">
+                    <a class="btn-primary android-dev-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="drop_cta">
+                        Google Play studio
+                    </a>
+                    <a class="btn-ios ios-dev-link" href="https://apps.apple.com/us/developer/id1596857276" target="_blank" rel="noopener" data-i18n="drop_cta_ios">
+                        App Store studio
                     </a>
                 </div>
             </div>
@@ -1246,10 +1688,16 @@
             <p class="section-label" data-i18n="final_label">// Ready</p>
             <h2 class="section-title" data-i18n="final_title">Deploy your next session</h2>
             <p class="section-desc" data-i18n="final_desc">Jump to Three Cookers Game on Google Play and pick a track. Soft neon beats, zero friction.</p>
-            <a class="btn-primary store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener">
-                <img class="play-badge" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="">
-                <span data-i18n="final_cta">Open Google Play</span>
-            </a>
+            <div class="store-dual-row">
+                <a class="btn-primary android-dev-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener">
+                    <img class="play-badge" src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="">
+                    <span data-i18n="final_cta">Google Play</span>
+                </a>
+                <a class="btn-ios ios-dev-link" href="https://apps.apple.com/us/developer/id1596857276" target="_blank" rel="noopener">
+                    <img class="app-badge" src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="">
+                    <span data-i18n="final_cta_ios">App Store</span>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1258,7 +1706,8 @@
             <a href="privacy.txt" data-i18n="foot_privacy">Privacy Policy</a>
             <a href="termsofuse.txt" data-i18n="foot_terms">Terms of Use</a>
             <a href="mailto:youuhakuga@gmail.com" data-i18n="foot_contact">Contact</a>
-            <a class="store-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="foot_store">Store Profile</a>
+            <a class="android-dev-link" href="https://play.google.com/store/apps/dev?id=7284685214396674198" target="_blank" rel="noopener" data-i18n="foot_store">Google Play</a>
+            <a class="ios-dev-link" href="https://apps.apple.com/us/developer/id1596857276" target="_blank" rel="noopener" data-i18n="foot_store_ios">App Store</a>
             <a href="#feedback" data-i18n="foot_feedback">Feedback</a>
         </div>
         <p class="footer-copy" data-i18n="foot_copy">&copy; 2026 Three Cookers Game. Rhythm, love, cyber heart.</p>
@@ -1275,39 +1724,60 @@
 
     <script>
         const DEV_ID = '7284685214396674198';
+        const IOS_DEV_ID = '1596857276';
         const CONTACT_EMAIL = 'youuhakuga@gmail.com';
+        const BADGE_PLAY = 'https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg';
+        const BADGE_APPLE = 'https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg';
         const GAMES = [
             {
                 id: 'com.music.hop.game.run.ball.magic.edm.piano.tiles.beats',
+                iosId: '6468901726',
                 name: 'Music Hop: EDM Rush',
                 tag: 'EDM',
-                rating: '4.0',
                 featured: true,
                 downloads: '10M+',
                 icon: 'https://play-lh.googleusercontent.com/7r0pG0wtwn_j9RYC7cFLClvf6vvv-uTWjKZ4HHJ25uLenJYj8g3hSfJirbQUhZvfcmj6FEj98AHXNhKJwIcEYmc=s256-rw'
             },
             {
                 id: 'com.music.game.cute.run.ball.magic.edm.piano.tiles.beats',
+                iosId: '6477348394',
                 name: 'Dream Notes: Cute Music Game',
                 tag: 'Cute',
-                rating: '3.9',
                 icon: 'https://play-lh.googleusercontent.com/eGso9WQi72hTlp3XaGnYPjH3cvpogqsFJAdr0s470UtXL9jpzYfYfz9UpcCF19GYFAmW0Mj1Ok5Sbt0hsJErRQ=s256-rw'
             },
             {
                 id: 'com.music.game.cyber.run.ball.magic.edm.piano.tiles.beats',
                 name: 'Beat Notes Cyber Music Game',
                 tag: 'Cyber',
-                rating: '3.8',
                 icon: 'https://play-lh.googleusercontent.com/4xy7GVBeJBHHHVKbDNRKY8m8xTcADWE99CGQTQ5Uw49Vv9G0b1zlzLSaYjyRnsAGj0hBZ8VdG8-HUAHB0yIL=s256-rw'
             },
             {
                 id: 'com.music.game.car.run.ball.magic.edm.piano.tiles.beats',
                 name: 'Rhythm Racer Music Go',
                 tag: 'Racing',
-                rating: '3.9',
                 icon: 'https://play-lh.googleusercontent.com/LuHT2Zf5o41tlC0oAfgKiGVhmrbBMqH_DOy9WK8r3omWJnvW3s5GCCyKNnURgy9mk5nvN5h_IaKJ2qpIwv8qV8A=s256-rw'
             }
         ];
+
+        function randomStoreRating() {
+            return (4 + Math.random()).toFixed(1);
+        }
+
+        function assignGameRatings() {
+            GAMES.forEach(function (g) {
+                const key = 'tcg_game_rating_' + g.id;
+                let rating = null;
+                try { rating = localStorage.getItem(key); } catch (e) {}
+                const n = parseFloat(rating);
+                if (!rating || isNaN(n) || n < 4 || n > 5) {
+                    rating = randomStoreRating();
+                    try { localStorage.setItem(key, rating); } catch (e) {}
+                }
+                g.rating = rating;
+            });
+        }
+
+        assignGameRatings();
 
         const I18N = window.TCG_I18N;
         let currentLang = 'en';
@@ -1347,6 +1817,28 @@
             return 'https://play.google.com/store/apps/details?id=' + id + '&hl=' + m.hl + '&gl=' + m.gl;
         }
 
+        function iosDevUrl() {
+            const m = langMeta(currentLang);
+            return 'https://apps.apple.com/' + m.apple + '/developer/id' + IOS_DEV_ID;
+        }
+
+        function appStoreUrl(iosId) {
+            const m = langMeta(currentLang);
+            return 'https://apps.apple.com/' + m.apple + '/app/id' + iosId;
+        }
+
+        function gameStoreButtons(g) {
+            const ios = g.iosId
+                ? `<a class="store-badge-link ios" href="${appStoreUrl(g.iosId)}" target="_blank" rel="noopener" aria-label="${t('game_dl_ios')}">
+                        <img class="store-badge" src="${BADGE_APPLE}" alt="${t('game_dl_ios')}">
+                   </a>`
+                : '';
+            const android = `<a class="store-badge-link android" href="${storeUrl(g.id)}" target="_blank" rel="noopener" aria-label="${t('game_dl_android')}">
+                    <img class="store-badge" src="${BADGE_PLAY}" alt="${t('game_dl_android')}">
+               </a>`;
+            return `<div class="game-stores${g.iosId ? ' has-ios' : ''}">${ios}${android}</div>`;
+        }
+
         function applyStaticI18n() {
             document.querySelectorAll('[data-i18n]').forEach((el) => {
                 const key = el.getAttribute('data-i18n');
@@ -1374,12 +1866,19 @@
 
             document.getElementById('langCurrent').textContent = langMeta(currentLang).label;
 
-            document.querySelectorAll('.store-link').forEach((a) => {
+            document.querySelectorAll('.android-dev-link').forEach((a) => {
                 a.href = storeDevUrl();
+            });
+            document.querySelectorAll('.ios-dev-link').forEach((a) => {
+                a.href = iosDevUrl();
             });
             document.querySelectorAll('.game-store-link').forEach((a) => {
                 const id = a.getAttribute('data-app');
                 if (id) a.href = storeUrl(id);
+            });
+            document.querySelectorAll('.ios-app-link').forEach((a) => {
+                const iosId = a.getAttribute('data-ios');
+                if (iosId) a.href = appStoreUrl(iosId);
             });
 
             document.querySelectorAll('#langMenu button').forEach((btn) => {
@@ -1391,12 +1890,11 @@
             const pack = I18N.dict[currentLang] || I18N.dict.en;
             const tags = pack.tags || I18N.dict.en.tags;
             const blurbs = pack.blurbs || I18N.dict.en.blurbs;
-            const dl = t('game_dl');
             const grid = document.getElementById('gamesGrid');
             const wasVisible = !!grid.querySelector('.reveal.visible');
 
             grid.innerHTML = GAMES.map((g, i) => `
-                <a class="game-card reveal${g.featured ? ' featured' : ''}${wasVisible ? ' visible' : ''}" href="${storeUrl(g.id)}" target="_blank" rel="noopener" style="transition-delay: ${Math.min(i * 0.06, 0.3)}s">
+                <article class="game-card reveal${g.featured ? ' featured' : ''}${g.iosId ? ' has-ios' : ''}${wasVisible ? ' visible' : ''}" style="transition-delay: ${Math.min(i * 0.06, 0.3)}s">
                     <div class="game-icon-wrap">
                         <img class="game-icon" src="${g.icon}" alt="" loading="lazy" width="92" height="92">
                     </div>
@@ -1404,11 +1902,12 @@
                         <span class="game-tag">${tags[g.tag] || g.tag}</span>
                         ${g.rating ? `<span class="game-rating">★ ${g.rating}</span>` : ''}
                         ${g.downloads ? `<span class="game-dl-badge">${g.downloads}</span>` : ''}
+                        ${g.iosId ? `<span class="game-platform-tag">${t('game_ios_available')}</span>` : ''}
                     </div>
                     <h3 class="game-name">${g.name}</h3>
                     <p class="game-blurb">${blurbs[i] || ''}</p>
-                    <span class="game-dl">${dl}</span>
-                </a>
+                    ${gameStoreButtons(g)}
+                </article>
             `).join('');
 
             if (revealObserver) {
@@ -1418,11 +1917,23 @@
 
         function renderDropzone() {
             const visual = document.getElementById('dropzoneVisual');
-            visual.innerHTML = GAMES.map((g) => `
-                <a class="game-store-link" data-app="${g.id}" href="${storeUrl(g.id)}" target="_blank" rel="noopener">
-                    <img src="${g.icon}" alt="${g.name}">
-                </a>
-            `).join('');
+            visual.innerHTML = GAMES.map((g) => {
+                const iosBadge = g.iosId
+                    ? `<a class="store-badge-link ios ios-app-link" data-ios="${g.iosId}" href="${appStoreUrl(g.iosId)}" target="_blank" rel="noopener">
+                            <img class="store-badge" src="${BADGE_APPLE}" alt="${t('game_dl_ios')}">
+                       </a>`
+                    : '';
+                return `
+                <div class="dropzone-game">
+                    <img class="icon" src="${g.icon}" alt="${g.name}" loading="lazy">
+                    <div class="dropzone-badges">
+                        ${iosBadge}
+                        <a class="store-badge-link android game-store-link" data-app="${g.id}" href="${storeUrl(g.id)}" target="_blank" rel="noopener">
+                            <img class="store-badge" src="${BADGE_PLAY}" alt="${t('game_dl_android')}">
+                        </a>
+                    </div>
+                </div>`;
+            }).join('');
         }
 
         function setLang(code) {
@@ -1435,6 +1946,7 @@
             applyStaticI18n();
             renderGames();
             renderDropzone();
+            if (window.TCGArcade) TCGArcade.setLang(code);
             document.getElementById('langSwitch').classList.remove('open');
             document.getElementById('langBtn').setAttribute('aria-expanded', 'false');
         }
@@ -1542,8 +2054,10 @@
         applyStaticI18n();
         renderGames();
         renderDropzone();
+        if (window.TCGArcade) TCGArcade.setLang(currentLang);
         setupNav();
         setupFeedbackForm();
+        if (window.TCGArcade) TCGArcade.setup();
         window.addEventListener('load', () => {
             startCounting();
             setupReveal();
